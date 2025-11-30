@@ -1,2 +1,2 @@
-# glass-buddy-privacy
-Privacy Policy for the Glass Buddy Mobile App
+# wysdom-privacy
+Privacy Policy for Wysdom Solutions Apps
