@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Fuzz Noise app icon">
+  <defs>
+    <linearGradient id="fnTile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1e25"></stop>
+      <stop offset="1" stop-color="#111319"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="24" fill="url(#fnTile)"></rect>
+  <g fill="#4a9eff">
+    <rect x="30" y="24" width="11" height="6.5" rx="3.25"></rect>
+    <rect x="45" y="24" width="6" height="6.5" rx="3.25"></rect>
+    <rect x="55" y="24" width="16" height="6.5" rx="3.25"></rect>
+    <rect x="24" y="39" width="16" height="6.5" rx="3.25"></rect>
+    <rect x="44" y="39" width="8" height="6.5" rx="3.25"></rect>
+    <rect x="56" y="39" width="19" height="6.5" rx="3.25"></rect>
+  </g>
+  <g fill="#4a9eff" opacity="0.82">
+    <rect x="27" y="54" width="9" height="6.5" rx="3.25"></rect>
+    <rect x="40" y="54" width="21" height="6.5" rx="3.25"></rect>
+    <rect x="65" y="54" width="9" height="6.5" rx="3.25"></rect>
+  </g>
+  <g fill="#4a9eff" opacity="0.55">
+    <rect x="33" y="69" width="13" height="6.5" rx="3.25"></rect>
+    <rect x="50" y="69" width="7" height="6.5" rx="3.25"></rect>
+    <rect x="61" y="69" width="11" height="6.5" rx="3.25"></rect>
+  </g>
+</svg>

@@ -1,0 +1,145 @@
+/* ==========================================================================
+   Fuzz Noise — Color & Type Foundations
+   Minimal ambient sound app for sleep & focus. Dark-first, calm, plain-spoken.
+   Source of truth: gjwysor/fuzz-noise (Expo / React Native, theme grepped from
+   src/app/* and src/components/*). No light mode — v1 is dark only.
+   ========================================================================== */
+
+:root {
+  /* ---- Raw palette -------------------------------------------------------
+     The de-facto in-app ramp: near-black surfaces stepping up through greys
+     to a blue-tinted "active" surface, a calm-blue accent family, and a
+     white -> grey text scale. */
+
+  /* Backgrounds & surfaces (the #000 -> #1a1a1a -> #1f2a3a ramp) */
+  --bg-base:        #000000;   /* root background, splash, banner-ad slot */
+  --bg-sunken:      #0d0d0d;   /* inset fields (timer input)              */
+  --surface:        #1a1a1a;   /* tiles, buttons, modals, rows            */
+  --surface-hover:  #222222;   /* pressed/hover row state                 */
+  --surface-active: #1f2a3a;   /* selected tile / chip (blue-tinted dark) */
+
+  /* Borders */
+  --border:         #2a2a2a;   /* subtle hairline borders, slider max-track */
+  --border-active:  #4a9eff;   /* accent border on active tiles/buttons     */
+
+  /* Accent (calm blue) */
+  --accent:         #4a9eff;   /* primary accent: active border, CTAs, slider */
+  --accent-tint:    #9ecbff;   /* lighter accent: info text, bullets          */
+  --accent-muted:   #7aa7d9;   /* desaturated accent: footnotes, tertiary     */
+
+  /* Text scale (white -> grey, all AA-safe on #000) */
+  --text-primary:   #ffffff;   /* titles, primary labels        21.0:1 */
+  --text-secondary: #cccccc;   /* body, inactive labels         13.6:1 */
+  --text-muted:     #999999;   /* section labels, captions        8.0:1 */
+  --text-disabled:  #666666;   /* placeholders, chevrons (decor)  3.7:1 — non-text only */
+
+  /* Semantic */
+  --success:        #1f7a3a;   /* paid / "on" state            */
+  --error:          #ff6b6b;   /* purchase & restore errors    */
+  --inactive:       #444444;   /* disabled button surface      */
+
+  /* ---- Type --------------------------------------------------------------
+     System fonts only. San Francisco on iOS, Roboto on Android (the primary
+     platform). No custom UI font is loaded. The web specimens below use
+     Roboto to mirror Android; production ships the platform default. */
+  --font-system: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
+                 system-ui, sans-serif;
+
+  /* Weights in use */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Type scale (px) — the existing 10/13/14/16/20/22/28/32 ladder */
+  --size-display: 28px;  /* screen titles ("Fuzz Noise")     */
+  --size-title:   20px;  /* secondary screen titles, modals  */
+  --size-heading: 18px;  /* modal titles                     */
+  --size-body:    16px;  /* default text, row labels, CTAs   */
+  --size-sub:     15px;  /* modal body copy                  */
+  --size-label:   14px;  /* slider labels, chips, captions   */
+  --size-meta:    13px;  /* section labels (uppercased)      */
+  --size-micro:   10px;  /* dev pill, tiny meta              */
+
+  /* Radii */
+  --radius-sm:  8px;    /* rows, inputs, small buttons       */
+  --radius-md:  10px;   /* settings rows, timer button       */
+  --radius-lg:  12px;   /* sound tiles                       */
+  --radius-xl:  16px;   /* modals / cards                    */
+
+  /* Spacing (the app's 4-based rhythm) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  /* Scrim for modals */
+  --scrim: rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Semantic type roles — apply these classes to mirror the app's text styles.
+   ========================================================================== */
+
+.fn-display {
+  font-family: var(--font-system);
+  font-size: var(--size-display);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+
+.fn-title {
+  font-family: var(--font-system);
+  font-size: var(--size-title);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.fn-heading {
+  font-family: var(--font-system);
+  font-size: var(--size-heading);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.fn-body {
+  font-family: var(--font-system);
+  font-size: var(--size-body);
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+}
+
+.fn-body-emphasis {
+  font-family: var(--font-system);
+  font-size: var(--size-sub);
+  font-weight: var(--weight-regular);
+  line-height: 22px;
+  color: var(--text-secondary);
+}
+
+.fn-label {
+  font-family: var(--font-system);
+  font-size: var(--size-label);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+
+/* Uppercased section header — e.g. "ABOUT" on Settings */
+.fn-section-label {
+  font-family: var(--font-system);
+  font-size: var(--size-meta);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.fn-caption {
+  font-family: var(--font-system);
+  font-size: var(--size-label);
+  font-weight: var(--weight-regular);
+  color: var(--text-muted);
+}
