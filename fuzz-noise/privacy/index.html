@@ -66,29 +66,29 @@
         <div class="clause" id="collect">
           <h2>Information we collect</h2>
           <p>The app has no account and no sign-in. You can use every feature without giving us your name, email, or any profile information.</p>
-          <p>Fuzz Noise itself doesn't collect, store, or transmit personal data. Your sound mix, volume levels, timer settings, and premium-purchase status are stored locally on your device. We run no backend server, so this information is never sent to us — there's no account, no cloud backup, and no sync.</p>
-          <p>The only data that leaves your device is handled by Google AdMob (banner ads on the free tier) and the app stores (one-time purchases), on their own platforms — see below.</p>
+          <p>Fuzz Noise itself doesn't collect, store, or transmit personal data. Your sound mix, volume levels, timer settings, and premium-purchase status are stored locally on your device. We run no backend server, so this information is never sent to us. There's no account, no cloud backup, and no sync.</p>
+          <p>The only data that leaves your device is handled by Google AdMob (banner ads on the free tier) and the app stores (one-time purchases), on their own platforms, as described below.</p>
         </div>
 
         <div class="clause" id="ads">
           <h2>Advertising</h2>
-          <p>The free version of Fuzz Noise shows a single banner ad served by <a class="inline" href="https://admob.google.com">Google AdMob</a>. We never play audio ads and never interrupt your sounds — removing the banner is part of the one-time upgrade.</p>
+          <p>The free version of Fuzz Noise shows a single banner ad served by <a class="inline" href="https://admob.google.com">Google AdMob</a>. We never play audio ads and never interrupt your sounds. Removing the banner is part of the one-time upgrade.</p>
           <p>AdMob is operated by Google and is governed by Google's own <a class="inline" href="https://policies.google.com/privacy">privacy policy</a>. When it serves ads, it may collect:</p>
           <ul>
-            <li>device identifiers (e.g. Android Advertising ID, iOS IDFA) — only if you allow tracking</li>
+            <li>device identifiers (e.g. Android Advertising ID, iOS IDFA), only if you allow tracking</li>
             <li>approximate location, derived from your IP address</li>
             <li>device type, operating system, and app version</li>
             <li>ad-interaction data (impressions, clicks)</li>
           </ul>
-          <p>On iOS, the system asks whether the app may use your advertising identifier. If you decline, AdMob serves non-personalized ads and doesn't use your identifier — declining is completely fine. You can remove ads entirely with the one-time upgrade.</p>
+          <p>On iOS, the system asks whether the app may use your advertising identifier. If you decline, AdMob serves non-personalized ads and doesn't use your identifier. Declining is completely fine. You can remove ads entirely with the one-time upgrade.</p>
         </div>
 
         <div class="clause" id="purchases">
           <h2>Purchases</h2>
-          <p>Fuzz Noise offers one optional, one-time purchase that removes ads and lets your sounds keep playing with the screen off (this uses Android's wake-lock permission to keep audio running). It's processed by the platform's billing system — Google Play Billing on Android, the App Store on iOS:</p>
+          <p>Fuzz Noise offers one optional, one-time purchase that removes ads and lets your sounds keep playing with the screen off (this uses Android's wake-lock permission to keep audio running). It's processed by the platform's billing system (Google Play Billing on Android, the App Store on iOS):</p>
           <ul>
             <li>we never see or store your payment details</li>
-            <li>the store confirms the purchase to the app; only an entitlement flag — whether you've upgraded — is stored on your device</li>
+            <li>the store confirms the purchase to the app; only an entitlement flag (whether you've upgraded) is stored on your device</li>
             <li>“Restore purchase” works through your store account, so there's no separate Fuzz Noise account</li>
           </ul>
           <p>See Google's and Apple's privacy policies for how they handle purchase data.</p>
@@ -103,7 +103,7 @@
           <h2>What we don't do</h2>
           <ul>
             <li>We don't ask you to create an account or log in.</li>
-            <li>We don't access your microphone, camera, photo library, location, or contacts — Fuzz Noise uses no such permissions, and no audio is ever recorded.</li>
+            <li>We don't access your microphone, camera, photo library, location, or contacts. Fuzz Noise uses no such permissions, and no audio is ever recorded.</li>
             <li>We don't operate a backend, so there's nothing on our side to collect, store, or leak.</li>
             <li>We don't sell your personal information.</li>
             <li>We never run audio ads or interrupt playback to advertise.</li>
@@ -119,7 +119,7 @@
           <h2>Your choices</h2>
           <p>You're in control:</p>
           <ul>
-            <li>limit ad personalization — or decline tracking on iOS — through your device settings</li>
+            <li>limit ad personalization (or decline tracking on iOS) through your device settings</li>
             <li>remove the banner entirely with the one-time upgrade</li>
             <li>uninstall the app at any time; that permanently removes all local app data and stops any data processing</li>
           </ul>
@@ -151,16 +151,14 @@
       <p>Ambient sound for sleep &amp; focus. A quiet utility from Wysdom Solutions.</p>
     </div>
     <div class="foot-col">
-      <h4>Product</h4>
-      <a href="../#sounds">The sounds</a>
-      <a href="../#get">Get the app</a>
-      <a href="../support/">Support</a>
+      <h4>Support</h4>
+      <a href="../privacy/">Privacy</a>
+      <a href="../support/">Help &amp; FAQ</a>
     </div>
     <div class="foot-col">
       <h4>Company</h4>
-      <a href="../privacy/">Privacy</a>
-      <a href="mailto:support@wysdomsolutions.com">Contact</a>
-      <a href="../support/">Help &amp; FAQ</a>
+      <a href="https://wysdomsolutions.com">Wysdom Solutions</a>
+      <a href="https://apps.wysdomsolutions.com">See more apps</a>
     </div>
   </div>
   <div class="wrap">
@@ -174,40 +172,62 @@
 <!-- TOC active-state on scroll -->
 <script>
   (function () {
-    var links = [].slice.call(document.querySelectorAll('.toc a'));
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var tocLinks = [].slice.call(document.querySelectorAll('.toc a'));
     var clauses = [].slice.call(document.querySelectorAll('.clause'));
-    var visible = {};
-    var lock = false, lockT, OFFSET = 88;
+    if (clauses.length < 2) return;
+    // Measure each clause's HEADING (not the padded container), so a section
+    // becomes active as its header rolls under the top bar — not early. Mirrors
+    // the apps-hub privacy scroll-spy (hench-goblin / glass-buddy). The headings
+    // carry scroll-margin-top in CSS, so native anchor clicks land correctly —
+    // no JS click handler needed.
+    var heads = clauses.map(function (c) { return c.querySelector('h2') || c; });
+    var ids = clauses.map(function (c) { return c.id; });
+
+    var active = null;
     function setActive(id) {
-      links.forEach(function (l) { l.classList.remove('active'); });
-      if (map[id]) map[id].classList.add('active');
-    }
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
-      if (lock) return;
-      // highlight the topmost clause currently in the detection band
-      for (var i = 0; i < clauses.length; i++) {
-        if (visible[clauses[i].id]) { setActive(clauses[i].id); return; }
-      }
-    }, { rootMargin: '-86px 0px -55% 0px', threshold: 0 });
-    clauses.forEach(function (c) { obs.observe(c); });
-    // explicit, offset-correct scrolling on click so we land ON the clicked clause
-    links.forEach(function (a) {
-      a.addEventListener('click', function (ev) {
-        var id = a.getAttribute('href').slice(1);
-        var el = document.getElementById(id);
-        if (!el) return;
-        ev.preventDefault();
-        lock = true; clearTimeout(lockT);
-        var top = el.getBoundingClientRect().top + window.pageYOffset - OFFSET;
-        window.scrollTo({ top: top < 0 ? 0 : top, behavior: 'smooth' });
-        setActive(id);
-        if (history.replaceState) history.replaceState(null, '', '#' + id);
-        lockT = setTimeout(function () { lock = false; }, 700);
+      if (id === active) return;
+      active = id;
+      tocLinks.forEach(function (l) {
+        l.classList.toggle('active', l.getAttribute('href').slice(1) === id);
       });
-    });
+    }
+
+    var LINE = 100; // px from the top of the viewport (clears the sticky nav)
+    var ticking = false;
+    function update() {
+      ticking = false;
+      // Base rule: the last heading whose top has scrolled past the line.
+      var idx = 0;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i].getBoundingClientRect().top <= LINE) idx = i;
+        else break; // headings are in order; the rest are further down
+      }
+      // Bottom of the page: the trailing sections are short and share the last
+      // screen, so they can never be scrolled up to the line. Spread whatever
+      // remains after `idx` across the final screen so each lights up in turn.
+      var vh = window.innerHeight;
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var maxScroll = document.documentElement.scrollHeight - vh;
+      if (maxScroll > 0) {
+        var remaining = maxScroll - scrollY;
+        if (remaining < vh && idx < heads.length - 1) {
+          var trailing = heads.length - 1 - idx;       // sections still ahead
+          var progress = 1 - remaining / vh;           // 0 → 1 across last screen
+          idx += Math.min(trailing, Math.floor(progress * (trailing + 1)));
+        }
+        if (scrollY >= maxScroll - 1) idx = heads.length - 1; // pin last at the end
+      }
+      setActive(ids[idx]);
+    }
+
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('scroll', onScroll, { passive: true, capture: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', onScroll);
+    update();
   })();
 </script>
 
